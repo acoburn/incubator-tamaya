@@ -82,7 +82,7 @@ public class OSGIServiceContextTest {
 
         List services = instance.getServices(Integer.class);
         assertThat(services).isNotNull();
-        assertThat(services.isEmpty()).isTrue();
+        assertThat(services).isEmpty();
     }
 
     /**

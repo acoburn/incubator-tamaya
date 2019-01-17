@@ -41,7 +41,7 @@ public class FilterContextTest {
         assertThat(val).isEqualTo(ctx.getProperty());
         assertThat(ConfigurationContext.EMPTY).isEqualTo(ctx.getConfigurationContext());
         assertThat(ctx.getConfigEntries()).isNotNull();
-        assertThat(1).isEqualTo(ctx.getAllValues().size());
+        assertThat(ctx.getAllValues()).hasSize(1);
     }
 
 //    @Test

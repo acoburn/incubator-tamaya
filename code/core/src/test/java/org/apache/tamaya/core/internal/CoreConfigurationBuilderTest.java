@@ -158,8 +158,7 @@ public class CoreConfigurationBuilderTest {
         b.removePropertyConverters(TypeLiteral.of(String.class), converter);
         cfg = b.build();
         ctx = cfg.getContext();
-        assertThat(ctx.getPropertyConverters(TypeLiteral.of(String.class)).contains(converter)).isFalse();
-        assertThat(ctx.getPropertyConverters(TypeLiteral.of(String.class)).isEmpty()).isTrue();
+        assertThat(ctx.getPropertyConverters(TypeLiteral.of(String.class))).doesNotContain(converter).isEmpty();
     }
 
     @Test

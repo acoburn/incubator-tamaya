@@ -68,7 +68,7 @@ public class PropertiesResourcePropertySourceTest {
         };
         PropertiesResourcePropertySource source = new PropertiesResourcePropertySource(testFileName, "somePrefix", badLoader);
         assertThat(source).isNotNull();
-        assertThat(source.getProperties().isEmpty()).isTrue();
+        assertThat(source.getProperties()).isEmpty();
     }
     
     @Test

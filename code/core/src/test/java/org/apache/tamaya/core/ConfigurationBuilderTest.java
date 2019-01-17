@@ -225,13 +225,13 @@ public class ConfigurationBuilderTest {
                         Arrays.<PropertyConverter<Object>>asList(new PropertyConverter[]{converter}));
         Configuration cfg = b.build();
         ConfigurationContext ctx = cfg.getContext();
-        assertThat(ctx.getPropertyConverters(TypeLiteral.of(String.class)).contains(converter)).isTrue();
-        assertThat(1).isEqualTo(ctx.getPropertyConverters().size());
+        assertThat(ctx.getPropertyConverters(TypeLiteral.of(String.class))).contains(converter);
+        assertThat(ctx.getPropertyConverters()).hasSize(1);
         b = Configuration.createConfigurationBuilder()
                 .addPropertyConverters(TypeLiteral.of(String.class),
                         Arrays.<PropertyConverter<Object>>asList(new PropertyConverter[]{converter}));
         b.addPropertyConverters(TypeLiteral.of(String.class), converter);
-        assertThat(1).isEqualTo(ctx.getPropertyConverters().size());
+        assertThat(ctx.getPropertyConverters()).hasSize(1);
     }
 
     @Test
@@ -250,7 +250,7 @@ public class ConfigurationBuilderTest {
         cfg = b.build();
         ctx = cfg.getContext();
         assertThat(ctx.getPropertyConverters(TypeLiteral.of(String.class)).contains(converter)).isFalse();
-        assertThat(ctx.getPropertyConverters(TypeLiteral.of(String.class)).isEmpty()).isTrue();
+        assertThat(ctx.getPropertyConverters(TypeLiteral.of(String.class))).isEmpty();
     }
 
 
@@ -270,7 +270,7 @@ public class ConfigurationBuilderTest {
         cfg = b.build();
         ctx = cfg.getContext();
         assertThat(ctx.getPropertyConverters(TypeLiteral.of(String.class)).contains(converter)).isFalse();
-        assertThat(ctx.getPropertyConverters(TypeLiteral.of(String.class)).isEmpty()).isTrue();
+        assertThat(ctx.getPropertyConverters(TypeLiteral.of(String.class))).isEmpty();
     }
 
     @Test
@@ -403,25 +403,25 @@ public class ConfigurationBuilderTest {
         Configuration cfg = b.build();
         ConfigurationContext ctx = cfg.getContext();
         assertThat(ctx).isNotNull();
-        assertThat(ctx.getPropertySources().isEmpty()).isTrue();
-        assertThat(ctx.getPropertyFilters().isEmpty()).isTrue();
+        assertThat(ctx.getPropertySources()).isEmpty();
+        assertThat(ctx.getPropertyFilters()).isEmpty();
     }
 
     @Test
     public void testRemoveAllFilters() throws Exception {
         ConfigurationBuilder b = Configuration.createConfigurationBuilder();
         b.addPropertyFilters((value, ctx) -> value.setValue(toString() + " - "));
-        assertThat(b.getPropertyFilters().isEmpty()).isFalse();
+        assertThat(b.getPropertyFilters()).isNotEmpty();
         b.removePropertyFilters(b.getPropertyFilters());
-        assertThat(b.getPropertyFilters().isEmpty()).isTrue();
+        assertThat(b.getPropertyFilters()).isEmpty();
     }
 
     @Test
     public void testRemoveAllSources() throws Exception {
         ConfigurationBuilder b = Configuration.createConfigurationBuilder();
         b.addPropertySources(new TestPropertySource());
-        assertThat(b.getPropertySources().isEmpty()).isFalse();
+        assertThat(b.getPropertySources()).isNotEmpty();
         b.removePropertySources(b.getPropertySources());
-        assertThat(b.getPropertyFilters().isEmpty()).isTrue();
+        assertThat(b.getPropertyFilters()).isEmpty();
     }
 }

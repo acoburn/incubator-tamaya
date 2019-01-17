@@ -106,9 +106,9 @@ public class DefaultConfigurationSnapshotTest {
         Configuration config = Configuration.current();
         DefaultConfigurationSnapshot snapshot = new DefaultConfigurationSnapshot(config,
                 Arrays.asList("confkey1", "confkey2", "confkey3"));
-        assertThat(config.getContext().getPropertySources().size()).isEqualTo(snapshot.getContext().getPropertySources().size());
-        assertThat(config.getContext().getPropertyConverters().size()).isEqualTo(snapshot.getContext().getPropertyConverters().size());
-        assertThat(config.getContext().getPropertyFilters().size()).isEqualTo(snapshot.getContext().getPropertyFilters().size());
+        assertThat(snapshot.getContext().getPropertySources()).hasSize(config.getContext().getPropertySources().size());
+        assertThat(snapshot.getContext().getPropertyConverters()).hasSize(config.getContext().getPropertyConverters().size());
+        assertThat(snapshot.getContext().getPropertyFilters()).hasSize(config.getContext().getPropertyFilters().size());
     }
 
     @Test

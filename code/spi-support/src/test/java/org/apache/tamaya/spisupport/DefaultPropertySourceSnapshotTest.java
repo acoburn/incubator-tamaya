@@ -69,7 +69,7 @@ public class DefaultPropertySourceSnapshotTest {
         PropertySource ps = DefaultPropertySourceSnapshot.of(myPS);
         assertThat(ps).isNotNull();
         assertThat(ps.getProperties()).isNotNull();
-        assertThat(ps.getProperties().isEmpty()).isFalse();
+        assertThat(ps.getProperties()).isNotEmpty();
         for(Map.Entry en:myPS.getProperties().entrySet()){
             assertThat(en.getValue()).isEqualTo(ps.get((String)en.getKey()));
         }
@@ -80,7 +80,7 @@ public class DefaultPropertySourceSnapshotTest {
         PropertySource ps1 = DefaultPropertySourceSnapshot.of(myPS);
         PropertySource ps2 = DefaultPropertySourceSnapshot.of(myPS);
         assertThat(ps1.getName()).isEqualTo(ps2.getName());
-        assertThat(ps1.getProperties().size()).isEqualTo(ps2.getProperties().size());
+        assertThat(ps1.getProperties()).hasSize(ps2.getProperties().size());
     }
 
     @Test

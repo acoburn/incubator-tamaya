@@ -331,7 +331,7 @@ public class DefaultConfigurationBuilderTest {
         b = new DefaultConfigurationBuilder().addPropertyConverters(TypeLiteral.of(String.class), converter1, converter2);
         cfg = b.removePropertyConverters(TypeLiteral.of(String.class)).build();
         ctx = cfg.getContext();
-        assertThat(ctx.getPropertyConverters(TypeLiteral.of(String.class)).isEmpty()).isTrue();
+        assertThat(ctx.getPropertyConverters(TypeLiteral.of(String.class))).isEmpty();
     }
 
     @Test
@@ -365,7 +365,7 @@ public class DefaultConfigurationBuilderTest {
         b = new DefaultConfigurationBuilder().addPropertyConverters(TypeLiteral.of(String.class), Arrays.asList(converter1, converter2));
         cfg = b.removePropertyConverters(TypeLiteral.of(String.class)).build();
         ctx = cfg.getContext();
-        assertThat(ctx.getPropertyConverters(TypeLiteral.of(String.class)).isEmpty()).isTrue();
+        assertThat(ctx.getPropertyConverters(TypeLiteral.of(String.class))).isEmpty();
     }
 
     @Test

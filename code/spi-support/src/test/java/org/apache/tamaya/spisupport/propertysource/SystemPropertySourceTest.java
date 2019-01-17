@@ -60,7 +60,7 @@ public class SystemPropertySourceTest {
             assertThat(localSystemPropertySource.toStringValues().contains("disabled=true")).isTrue();
             assertThat(localSystemPropertySource.get(System.getenv().entrySet().iterator().next().getKey())).isNull();
             assertThat(localSystemPropertySource.getName().contains("(disabled)")).isTrue();
-            assertThat(localSystemPropertySource.getProperties().isEmpty()).isTrue();
+            assertThat(localSystemPropertySource.getProperties()).isEmpty();
             assertThat(localSystemPropertySource.toString().contains("disabled=true")).isTrue();
 
             System.getProperties().clear();
